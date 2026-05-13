@@ -1,61 +1,351 @@
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Caveat:wght@400;600&family=Cormorant+Garamond:ital,wght@0,300;1,300&display=swap');
-*{box-sizing:border-box;margin:0;padding:0;}
+  @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Caveat:wght@400;600&family=Cormorant+Garamond:ital,wght@0,300;1,300&display=swap");
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
 
-.scene{
-  background:radial-gradient(ellipse at 50% 30%,#ffe0ec 0%,#ffc2d9 45%,#ffaacf 100%);
-  display:flex;flex-direction:column;align-items:center;
-  position:relative;overflow:hidden;border-radius:12px;
-  padding:1.5rem 0.75rem;
-}
+  .scene {
+    background: radial-gradient(
+      ellipse at 50% 30%,
+      #ffe0ec 0%,
+      #ffc2d9 45%,
+      #ffaacf 100%
+    );
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    padding: 0;
+    width: 100%;
+    min-height: 100vh;
+  }
 
-.hb{position:absolute;inset:0;pointer-events:none;z-index:0;}
-.h{position:absolute;top:-20px;opacity:0;animation:fu linear infinite;}
-@keyframes fu{
-  0%{transform:translateY(0) rotate(-10deg);opacity:0;}
-  10%{opacity:0.7;}90%{opacity:0.3;}
-  100%{transform:translateY(110vh) rotate(10deg);opacity:0;}
-}
+  .hb {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .h {
+    position: absolute;
+    top: -20px;
+    opacity: 0;
+    animation: fu linear infinite;
+  }
+  @keyframes fu {
+    0% {
+      transform: translateY(0) rotate(-10deg);
+      opacity: 0;
+    }
+    10% {
+      opacity: 0.7;
+    }
+    90% {
+      opacity: 0.3;
+    }
+    100% {
+      transform: translateY(110vh) rotate(10deg);
+      opacity: 0;
+    }
+  }
 
-.env-stage{position:relative;z-index:2;width:100%;display:flex;flex-direction:column;align-items:center;transition:opacity .4s,transform .4s;}
-.env-stage.hide{opacity:0;transform:translateY(40px);pointer-events:none;position:absolute;}
+  .env-stage {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition:
+      opacity 0.4s,
+      transform 0.4s;
+  }
+  .env-stage.hide {
+    opacity: 0;
+    transform: translateY(40px);
+    pointer-events: none;
+    position: absolute;
+  }
 
-.env-wrap{width:min(300px,90vw);cursor:pointer;}
-.env-body{width:min(300px,90vw);height:190px;background:linear-gradient(160deg,#ff85b8,#ff5fa0);border-radius:8px;position:relative;box-shadow:0 8px 36px rgba(220,60,120,0.3);}
-.env-left{position:absolute;top:0;left:0;width:50%;height:190px;background:linear-gradient(135deg,#ff6aab,#ff4d97);clip-path:polygon(0% 0%,100% 50%,0% 100%);z-index:1;}
-.env-right{position:absolute;top:0;right:0;width:50%;height:190px;background:linear-gradient(225deg,#ff6aab,#ff4d97);clip-path:polygon(100% 0%,0% 50%,100% 100%);z-index:1;}
-.env-bottom{position:absolute;bottom:0;left:0;width:100%;height:95px;background:linear-gradient(170deg,#ff78af,#ff4d97);clip-path:polygon(0% 100%,50% 0%,100% 100%);border-radius:0 0 8px 8px;z-index:1;}
-.env-flap{position:absolute;top:0;left:0;width:100%;height:105px;background:linear-gradient(180deg,#ffb3d1,#ff85b8);clip-path:polygon(0% 0%,50% 100%,100% 0%);transform-origin:top center;transform-style:preserve-3d;transition:transform .65s cubic-bezier(.4,0,.2,1);z-index:4;border-radius:8px 8px 0 0;}
-.env-flap.open{transform:rotateX(-180deg);}
-.seal{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:44px;height:44px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#ff3385,#c4005f);border:3px solid rgba(255,255,255,.5);display:flex;align-items:center;justify-content:center;font-size:18px;z-index:5;box-shadow:0 2px 14px rgba(180,0,80,.5);transition:transform .3s,opacity .3s;}
-.seal.hidden{transform:translate(-50%,-50%) scale(0);opacity:0;}
-.env-hint{font-family:'Caveat',cursive;font-size:14px;color:rgba(180,0,80,.65);text-align:center;letter-spacing:1px;margin-top:12px;transition:opacity .3s;}
+  .env-wrap {
+    width: min(300px, 90vw);
+    cursor: pointer;
+  }
+  .env-body {
+    width: min(300px, 90vw);
+    height: 190px;
+    background: linear-gradient(160deg, #ff85b8, #ff5fa0);
+    border-radius: 8px;
+    position: relative;
+    box-shadow: 0 8px 36px rgba(220, 60, 120, 0.3);
+  }
+  .env-left {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 190px;
+    background: linear-gradient(135deg, #ff6aab, #ff4d97);
+    clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
+    z-index: 1;
+  }
+  .env-right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 190px;
+    background: linear-gradient(225deg, #ff6aab, #ff4d97);
+    clip-path: polygon(100% 0%, 0% 50%, 100% 100%);
+    z-index: 1;
+  }
+  .env-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 95px;
+    background: linear-gradient(170deg, #ff78af, #ff4d97);
+    clip-path: polygon(0% 100%, 50% 0%, 100% 100%);
+    border-radius: 0 0 8px 8px;
+    z-index: 1;
+  }
+  .env-flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 105px;
+    background: linear-gradient(180deg, #ffb3d1, #ff85b8);
+    clip-path: polygon(0% 0%, 50% 100%, 100% 0%);
+    transform-origin: top center;
+    transform-style: preserve-3d;
+    transition: transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 4;
+    border-radius: 8px 8px 0 0;
+  }
+  .env-flap.open {
+    transform: rotateX(-180deg);
+  }
+  .seal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #ff3385, #c4005f);
+    border: 3px solid rgba(255, 255, 255, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    z-index: 5;
+    box-shadow: 0 2px 14px rgba(180, 0, 80, 0.5);
+    transition:
+      transform 0.3s,
+      opacity 0.3s;
+  }
+  .seal.hidden {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+  }
+  .env-hint {
+    font-family: "Caveat", cursive;
+    font-size: 14px;
+    color: rgba(180, 0, 80, 0.65);
+    text-align: center;
+    letter-spacing: 1px;
+    margin-top: 12px;
+    transition: opacity 0.3s;
+  }
+  .letter-stage {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(20px);
+    transition:
+      opacity 0.5s,
+      transform 0.5s;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 1rem;
+  }
+  .letter-stage.show {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+    position: relative;
+  }
 
-.letter-stage{width:100%;display:flex;justify-content:center;opacity:0;pointer-events:none;transform:translateY(20px);transition:opacity .5s,transform .5s;position:absolute;top:1.5rem;left:0;padding:0 0.75rem;}
-.letter-stage.show{opacity:1;pointer-events:auto;transform:translateY(0);position:relative;top:auto;}
+  .letter {
+    background: #fff8fb;
+    border: 1.5px solid rgba(255, 150, 190, 0.5);
+    border-radius: 12px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 900px;
+    min-height: 90vh;
+    box-shadow: 0 6px 36px rgba(200, 60, 100, 0.15);
+    position: relative;
 
-.letter{background:#fff8fb;border:1.5px solid rgba(255,150,190,.5);border-radius:6px;padding:1.25rem 1.1rem 1.25rem;width:100%;max-width:360px;box-shadow:0 6px 36px rgba(200,60,100,.15);position:relative;}
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 
-.stamp{position:absolute;top:10px;right:10px;width:30px;height:38px;border:1.5px solid rgba(255,120,170,.5);border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:13px;background:rgba(255,200,220,.3);}
+  .stamp {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 30px;
+    height: 38px;
+    border: 1.5px solid rgba(255, 120, 170, 0.5);
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    background: rgba(255, 200, 220, 0.3);
+  }
 
-.hrow{font-size:10px;letter-spacing:5px;color:#ff5fa0;text-align:center;margin-bottom:0.5rem;}
-.occ{font-family:'Caveat',cursive;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#ff7ab8;text-align:center;margin-bottom:0.2rem;}
-.yr{font-family:'Playfair Display',serif;font-size:40px;font-style:italic;color:#ff3385;text-align:center;line-height:1;text-shadow:0 0 18px rgba(255,100,160,.3);}
-.yrsub{font-family:'Caveat',cursive;font-size:12px;color:#ff85b8;text-align:center;letter-spacing:2px;margin-bottom:0.5rem;}
+  .hrow {
+    font-size: 10px;
+    letter-spacing: 5px;
+    color: #ff5fa0;
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+  .occ {
+    font-family: "Caveat", cursive;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #ff7ab8;
+    text-align: center;
+    margin-bottom: 0.2rem;
+  }
+  .yr {
+    font-family: "Playfair Display", serif;
+    font-size: 40px;
+    font-style: italic;
+    color: #ff3385;
+    text-align: center;
+    line-height: 1;
+    text-shadow: 0 0 18px rgba(255, 100, 160, 0.3);
+  }
+  .yrsub {
+    font-family: "Caveat", cursive;
+    font-size: 12px;
+    color: #ff85b8;
+    text-align: center;
+    letter-spacing: 2px;
+    margin-bottom: 0.5rem;
+  }
 
-.dv{display:flex;align-items:center;gap:7px;margin:0.5rem 0;}
-.dl{flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(255,120,170,.4));}
-.dr{flex:1;height:1px;background:linear-gradient(90deg,rgba(255,120,170,.4),transparent);}
-.di{font-size:9px;color:#ff85b8;}
+  .dv {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin: 0.5rem 0;
+  }
+  .dl {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 120, 170, 0.4));
+  }
+  .dr {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(255, 120, 170, 0.4), transparent);
+  }
+  .di {
+    font-size: 9px;
+    color: #ff85b8;
+  }
 
-.lto{font-family:'Caveat',cursive;font-size:24px;font-weight:600;color:#e0005a;text-align:center;margin-bottom:0.1rem;}
-.lsub{font-family:'Cormorant Garamond',serif;font-size:12px;font-style:italic;color:rgba(200,60,120,.6);text-align:center;margin-bottom:0.5rem;}
+  .lto {
+    font-family: "Caveat", cursive;
+    font-size: 24px;
+    font-weight: 600;
+    color: #e0005a;
+    text-align: center;
+    margin-bottom: 0.1rem;
+  }
+  .lsub {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 12px;
+    font-style: italic;
+    color: rgba(200, 60, 120, 0.6);
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
 
-.lb{font-family:'Caveat',cursive;font-size:15px;line-height:1.8;color:#7a2040;text-align:center;margin-bottom:0.65rem;}
-.lb em{color:#e0005a;font-style:normal;font-weight:600;}
+  .lb {
+    font-family: "Caveat", cursive;
+    font-size: 15px;
+    line-height: 1.8;
+    color: #7a2040;
+    text-align: center;
+    margin-bottom: 0.65rem;
+  }
+  .lb em {
+    color: #e0005a;
+    font-style: normal;
+    font-weight: 600;
+  }
 
-.lclose{font-family:'Cormorant Garamond',serif;font-size:12px;font-style:italic;color:#c45080;text-align:right;margin-bottom:0.1rem;}
-.lsig{font-family:'Caveat',cursive;font-size:24px;font-weight:600;color:#e0005a;text-align:right;}
+  .lclose {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 12px;
+    font-style: italic;
+    color: #c45080;
+    text-align: right;
+    margin-bottom: 0.1rem;
+  }
+  .lsig {
+    font-family: "Caveat", cursive;
+    font-size: 24px;
+    font-weight: 600;
+    color: #e0005a;
+    text-align: right;
+  }
+  @media (max-width: 768px) {
+    .letter {
+      min-height: 100vh;
+      max-width: 100%;
+      border-radius: 0;
+      padding: 1.5rem 1.2rem;
+    }
+
+    .yr {
+      font-size: 60px;
+    }
+
+    .lb {
+      font-size: 18px;
+      line-height: 2;
+    }
+
+    .lto {
+      font-size: 32px;
+    }
+
+    .lsig {
+      font-size: 30px;
+    }
+  }
 </style>
 
 <div class="scene" id="scene">
@@ -83,37 +373,49 @@
       <p class="yr">1</p>
       <p class="yrsub">Tahun Penuh Cinta</p>
 
-      <div class="dv"><div class="dl"></div><span class="di">♡</span><div class="dr"></div></div>
+      <div class="dv">
+        <div class="dl"></div>
+        <span class="di">♡</span>
+        <div class="dr"></div>
+      </div>
 
       <p class="lto">Nanda,</p>
       <p class="lsub">— yang bikin hidupku berantakan tapi happy —</p>
 
-      <div class="dv"><div class="dl"></div><span class="di">♡</span><div class="dr"></div></div>
+      <div class="dv">
+        <div class="dl"></div>
+        <span class="di">♡</span>
+        <div class="dr"></div>
+      </div>
 
       <p class="lb">
-        Setahun udah lewat, gila banget ya sayang —<br>
-        dari <em>dag dig dug</em> pertama kali PDKT<br>
-        sampe sekarang.<br>
+        Setahun udah lewat, gila banget ya sayang —<br />
+        dari <em>dag dig dug</em> pertama kali PDKT<br />
+        sampe sekarang.<br />
         saat kamu <em>lagi marah</em> sebenernya gemes. 😭
       </p>
 
       <p class="lb">
-        Banyak hal yang udah kita lewatin bareng,<br>
-        dari yang bikin ketawa sampe yang bikin<br>
-        kepala mau meledak — tapi aku gak nyesel<br>
-        barang satu detik pun ngelewatinnya<br>
+        Banyak hal yang udah kita lewatin bareng,<br />
+        dari yang bikin ketawa sampe yang bikin<br />
+        kepala mau meledak — tapi aku gak nyesel<br />
+        barang satu detik pun ngelewatinnya<br />
         sama kamu. <em>Serius.</em> 🩷
       </p>
 
       <p class="lb">
-        Makasih ya udah mau repot-repot<br>
-        jatuh cinta sama aku.<br>
-        Happy anniversary, <em>Nanda</em>.<br>
-        Semoga masih mau nemenin aku<br>
+        Makasih ya udah mau repot-repot<br />
+        jatuh cinta sama aku.<br />
+        Happy anniversary, <em>Nanda</em>.<br />
+        Semoga masih mau nemenin aku<br />
         untuk tahun-tahun berikutnya. 🌸
       </p>
 
-      <div class="dv"><div class="dl"></div><span class="di">♡</span><div class="dr"></div></div>
+      <div class="dv">
+        <div class="dl"></div>
+        <span class="di">♡</span>
+        <div class="dr"></div>
+      </div>
 
       <p class="lclose">Selalu dan selamanya,</p>
       <p class="lsig">Dio 🩷</p>
@@ -122,36 +424,39 @@
 </div>
 
 <script>
-const sym=['🩷','💕','💗','💖','🌸','💞','💝'];
-const hb=document.getElementById('hb');
-function mkh(){
-  const el=document.createElement('div');
-  el.className='h';
-  el.textContent=sym[Math.floor(Math.random()*sym.length)];
-  el.style.left=Math.random()*100+'%';
-  el.style.fontSize=(10+Math.random()*12)+'px';
-  const d=5+Math.random()*6;
-  el.style.animationDuration=d+'s';
-  el.style.animationDelay=(Math.random()*d)+'s';
-  hb.appendChild(el);
-  setTimeout(()=>el.remove(),(d+7)*1000);
-}
-for(let i=0;i<20;i++) setTimeout(mkh,i*200);
-setInterval(mkh,500);
+  const sym = ["🩷", "💕", "💗", "💖", "🌸", "💞", "💝"];
+  const hb = document.getElementById("hb");
+  function mkh() {
+    const el = document.createElement("div");
+    el.className = "h";
+    el.textContent = sym[Math.floor(Math.random() * sym.length)];
+    el.style.left = Math.random() * 100 + "%";
+    el.style.fontSize = 10 + Math.random() * 12 + "px";
+    const d = 5 + Math.random() * 6;
+    el.style.animationDuration = d + "s";
+    el.style.animationDelay = Math.random() * d + "s";
+    hb.appendChild(el);
+    setTimeout(() => el.remove(), (d + 7) * 1000);
+  }
+  for (let i = 0; i < 20; i++) setTimeout(mkh, i * 200);
+  setInterval(mkh, 500);
 
-let opened=false;
-function openEnv(){
-  if(opened)return;
-  opened=true;
-  document.getElementById('seal').classList.add('hidden');
-  document.getElementById('hint').style.opacity='0';
-  setTimeout(()=>document.getElementById('flap').classList.add('open'),100);
-  setTimeout(()=>{
-    document.getElementById('envStage').classList.add('hide');
-    setTimeout(()=>{
-      document.getElementById('envStage').style.display='none';
-      document.getElementById('letterStage').classList.add('show');
-    },400);
-  },700);
-}
+  let opened = false;
+  function openEnv() {
+    if (opened) return;
+    opened = true;
+    document.getElementById("seal").classList.add("hidden");
+    document.getElementById("hint").style.opacity = "0";
+    setTimeout(
+      () => document.getElementById("flap").classList.add("open"),
+      100,
+    );
+    setTimeout(() => {
+      document.getElementById("envStage").classList.add("hide");
+      setTimeout(() => {
+        document.getElementById("envStage").style.display = "none";
+        document.getElementById("letterStage").classList.add("show");
+      }, 400);
+    }, 700);
+  }
 </script>
